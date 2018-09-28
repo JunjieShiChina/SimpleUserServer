@@ -1,6 +1,7 @@
 package me.shijunjie.SimpleUserServer.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,12 +16,12 @@ import me.shijunjie.SimpleUserServer.service.UserService;
 @RestController
 @RequestMapping("/User")
 public class UserController {
-	
+
 	@Autowired
 	private UserService userService;
 
 	@ApiOperation(value = "/login", httpMethod = "GET", notes = "登录")
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	@RequestMapping(value = "/login", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public BaseResponse login(UserRequest request) {
 		return userService.login(request);
 	}
