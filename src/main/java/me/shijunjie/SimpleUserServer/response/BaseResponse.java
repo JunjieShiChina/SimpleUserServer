@@ -20,5 +20,50 @@ public class BaseResponse implements Serializable {
 		this.status = status;
 		this.message = message;
 	}
+	
+	public BaseResponse(int status, String message, Object data) {
+		this.status = status;
+		this.message = message;
+		this.data = data;
+	}
+	
+	public BaseResponse(RespStatus respStatus, Object data) {
+		this.status = respStatus.getValue();
+		this.message = respStatus.getMessage();
+		this.data = data;
+	}
+	
+	public BaseResponse(RespStatus respStatus) {
+		this.status = respStatus.getValue();
+		this.message = respStatus.getMessage();
+	}
+	
+	public static BaseResponse ok(Object data) {
+		return new BaseResponse(RespStatus.SUCCESS, data);
+	}
 
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+
+	public Object getData() {
+		return data;
+	}
+
+	public void setData(Object data) {
+		this.data = data;
+	}
+	
 }
