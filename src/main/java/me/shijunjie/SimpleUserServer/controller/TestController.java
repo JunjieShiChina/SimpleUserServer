@@ -1,5 +1,8 @@
 package me.shijunjie.SimpleUserServer.controller;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +22,13 @@ public class TestController {
 
 	@Autowired
 	private UserService userService;
+	
+	@ApiOperation(value = "/ipAddress", httpMethod = "GET")
+	@RequestMapping(value = "/ipAddress", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public BaseResponse ipAddress() throws UnknownHostException {
+		InetAddress addr = InetAddress.getLocalHost();
+		return BaseResponse.ok(addr.getHostAddress());
+	}
 
 	@ApiOperation(value = "/testInsert", httpMethod = "GET")
 	@RequestMapping(value = "/testInsert", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
