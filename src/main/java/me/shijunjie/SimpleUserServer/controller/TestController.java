@@ -27,7 +27,7 @@ public class TestController {
 	@RequestMapping(value = "/ipAddress", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public BaseResponse ipAddress() throws UnknownHostException {
 		InetAddress addr = InetAddress.getLocalHost();
-		return BaseResponse.ok(addr.getHostAddress());
+		return BaseResponse.ok("other:"+addr.getHostAddress());
 	}
 
 	@ApiOperation(value = "/testInsert", httpMethod = "GET")
